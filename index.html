@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>すいまるのデイリーボイスくじ🎀</title>
+  <style>
+    body {
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2em;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px #888;
+    }
+    #sub {
+      color: #ffffff;
+      font-size: 1em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px #888;
+    }
+    #kuji-button {
+      width: 300px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px #888;
+    }
+    #download-link {
+      display: none;
+      margin-top: 20px;
+    }
+    #download-link button {
+      font-size: 1em;
+      padding: 10px 20px;
+      background-color: rgba(255, 204, 221, 0.9);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>すいまるのデイリーボイスくじ🎀</h1>
+  <p id="sub">チャンネル登録者1000名様達成ありがとう！<br>ぜひボタンを押してすいまるのニューボイスをゲットだ！</p>
+  <img src="button.png" id="kuji-button" onclick="playRandomVoice()" alt="ボイスくじをひく">
+  <div id="result"></div>
+
+  <audio id="player" controls></audio>
+
+  <div id="download-link">
+    <a id="download-href" href="#" download>
+      <button>このボイスをダウンロード♡</button>
+    </a>
+  </div>
+
+  <script>
+    const voices = [
+      {src: "voice1.mp3", text: "おはよう♡今日はいいことあるかも！"},
+      {src: "voice2.mp3", text: "おきておきて！"},
+      {src: "voice3.mp3", text: "まだ眠いよ～…"},
+      {src: "voice4.mp3", text: "お疲れ様♡"},
+      {src: "voice5.mp3", text: "わるいこ♡"},
+      {src: "voice6.mp3", text: "おかえり♡"},
+      {src: "voice7.mp3", text: "帰ってきた！！"},
+　　　{src: "voice8.mp3", text: "眠れないの？"},
+　　　{src: "voice9.mp3", text: "キミが眠るまで…♡"},
+　　　{src: "voice10.mp3", text: "今どこで聞いてる？"},
+　　　{src: "voice11.mp3", text: "電話出てよ！"},
+　　　{src: "voice12.mp3", text: "もしもし？"},
+　　　{src: "voice13.mp3", text: "着信だよ～！"},
+　　　{src: "voice14.mp3", text: "ねえ"},
+　　　{src: "voice15.mp3", text: "へへ♡"},
+　　　{src: "voice16.mp3", text: "お客にゃん♡"},
+    ];
+
+    function playRandomVoice() {
+      const choice = voices[Math.floor(Math.random() * voices.length)];
+      const player = document.getElementById("player");
+      player.src = choice.src;
+      player.play();
+      document.getElementById("result").innerText = choice.text;
+
+      const downloadLink = document.getElementById("download-href");
+      downloadLink.href = choice.src;
+      document.getElementById("download-link").style.display = "block";
+    }
+  </script>
+</body>
+</html>
